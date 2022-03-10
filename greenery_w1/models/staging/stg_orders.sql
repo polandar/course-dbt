@@ -1,0 +1,24 @@
+{{ config(materialized='table') }}
+
+with orders_source as (
+    select * from {{ source('staging', 'orders') }}
+),
+renamed_casted as (
+    SELECT
+        order_id,
+        promo_id,
+        user_id,
+        address_id,
+        created_at,
+        order_cost,
+        shipping_cost,
+        order_total,
+        tracking_id,
+        shipping_service,
+        estimated_delivery_at,
+        delivered_at,
+        status as order_status
+    FROM orders_source
+)
+
+select * from renamed_casted

@@ -1,0 +1,114 @@
+version:  2
+
+sources:
+  - name: staging
+    schema: public
+    database: dbt
+
+    quoting:
+      database: false
+      schema: false
+      identifier: false
+
+    freshness:
+      warn_after: {count: 24, period: hour}
+      error_after: {count: 48, period: hour}
+    tables:
+      - name: addresses
+      - name: events
+        loaded_at_field: created_at
+      - name: order_items
+      - name: orders 
+        loaded_at_field: created_at
+      - name: products
+      - name: promos
+      - name: users
+        loaded_at_field: created_at
+
+models:
+  - name: stg_addresses
+    columns:
+      - name: address_id
+        tests:
+          - unique
+          - not_null
+      - name: full_address
+      - name: zipcode
+      - name: state_name
+      - name: country
+
+  - name: stg_events
+    columns:
+      - name: event_id
+        tests:
+          - unique
+          - not_null
+      - name: session_id
+      - name: user_id
+      - name: event_type
+      - name: page_url
+      - name: created_at
+
+  - name: stg_order_items
+    columns:
+      - name: order_id
+        tests:
+          - not_null
+      - name: product_id
+        tests:
+          - not_null
+      - name: quantity
+
+  - name: stg_orders
+    columns:
+      - name: order_id
+        tests:
+          - unique
+          - not_null
+      - name: promo_id
+      - name: user_id
+      - name: address_id
+      - name: created_at
+      - name: order_cost
+      - name: shipping_cost
+      - name: order_total
+      - name: tracking_id
+      - name: shipping_service
+      - name: estimated_delivery_at
+      - name: delivered_at
+      - name: order_status
+        tests:
+          - not_null
+
+  - name: stg_products
+    columns:
+      - name: product_id
+        tests:
+          - unique
+          - not_null
+      - name: product_name
+      - name: price
+      - name: inventory
+
+  - name: stg_promos
+    columns:
+      - name: promo_id
+        tests:
+          - unique
+          - not_null
+      - name: discount
+      - name: promo_status
+  
+  - name: stg_users
+    columns:
+      - name: user_id
+        tests:
+          - unique
+          - not_null
+      - name: address_id
+      - name: first_name
+      - name: last_name
+      - name: email
+      - name: phone_number
+      - name: created_at
+      - name: updated_at
