@@ -2,6 +2,7 @@
 
 ### What is our user repeat rate?
 
+```
 WITH user_orders AS (
     SELECT
         user_id,
@@ -17,6 +18,7 @@ SELECT (
             ELSE NULL END
     )::numeric / COUNT(user_id)) * 100
 FROM user_orders;
+```
 
 Answer:
 ```
