@@ -1,21 +1,109 @@
 
 version: 2
 
+# models:
+#   - name: my_first_dbt_model
+#     description: "A starter dbt model"
+#     columns:
+#       - name: id
+#         description: "The primary key for this table"
+#         tests:
+#           - unique
+#           - not_null
+
+#   - name: my_second_dbt_model
+#     description: "A starter dbt model"
+#     columns:
+#       - name: id
+#         description: "The primary key for this table"
+#         tests:
+#           - unique
+#           - not_null
+
 models:
-  - name: my_first_dbt_model
-    description: "A starter dbt model"
+  - name: stg_addresses
     columns:
-      - name: id
-        description: "The primary key for this table"
+      - name: address_id
         tests:
           - unique
+          - not_null
+      - name: full_address
+      - name: zipcode
+      - name: state_name
+      - name: country
+
+  - name: stg_events
+    columns:
+      - name: event_id
+        tests:
+          - unique
+          - not_null
+      - name: session_id
+      - name: user_id
+      - name: event_type
+      - name: page_url
+      - name: created_at_utc
+
+  - name: stg_order_items
+    columns:
+      - name: order_id
+        tests:
+          - not_null
+      - name: product_id
+        tests:
+          - not_null
+      - name: quantity
+
+  - name: stg_orders
+    columns:
+      - name: order_id
+        tests:
+          - unique
+          - not_null
+      - name: promo_id
+      - name: user_id
+      - name: address_id
+      - name: created_at
+      - name: order_cost
+      - name: shipping_cost
+      - name: order_total
+      - name: tracking_id
+      - name: shipping_service
+      - name: estimated_delivery_at
+      - name: delivered_at_utc
+      - name: order_status
+        tests:
           - not_null
 
-  - name: my_second_dbt_model
-    description: "A starter dbt model"
+  - name: stg_products
     columns:
-      - name: id
-        description: "The primary key for this table"
+      - name: product_id
         tests:
           - unique
           - not_null
+      - name: product_name
+      - name: price
+      - name: inventory
+
+  - name: stg_promos
+    columns:
+      - name: promo_id
+        tests:
+          - unique
+          - not_null
+      - name: discount
+      - name: promo_status
+  
+  - name: stg_users
+    columns:
+      - name: user_id
+        tests:
+          - unique
+          - not_null
+      - name: address_id
+      - name: first_name
+      - name: last_name
+      - name: email
+      - name: phone_number
+      - name: created_at_utc
+      - name: updated_at_utc

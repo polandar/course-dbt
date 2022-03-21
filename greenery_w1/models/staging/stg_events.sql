@@ -10,7 +10,7 @@ renamed_casted as (
         user_id,
         event_type,
         page_url,
-        created_at
+        created_at as created_at_utc
     FROM events_source
 )
 
