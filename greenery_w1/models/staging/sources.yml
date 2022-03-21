@@ -13,14 +13,22 @@ sources:
     freshness:
       warn_after: {count: 24, period: hour}
       error_after: {count: 48, period: hour}
+
     tables:
       - name: addresses
+        description: full description of an address
       - name: events
         loaded_at_field: created_at
+        description: event, its type, url and user it is related to
       - name: order_items
+        description: items present in an order
       - name: orders 
         loaded_at_field: created_at
+        description: order and its shipping information/state
       - name: products
+        description: products, stock level and availablity
       - name: promos
+        description: product promotions
       - name: users
         loaded_at_field: created_at
+        description: base information about the users
