@@ -10,7 +10,9 @@ renamed_casted as (
         user_id,
         event_type,
         page_url,
-        created_at as created_at_utc
+        created_at as created_at_utc,
+        order_id,
+        product_id
     FROM events_source
 )
 

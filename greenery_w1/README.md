@@ -1,3 +1,49 @@
+## Answers for W2 questions
+
+### What is our user repeat rate?
+
+WITH user_orders AS (
+    SELECT
+        user_id,
+        COUNT(distinct order_id) AS orders
+    FROM dbt_rolandas_g.fact_orders
+    GROUP BY user_id
+)
+
+SELECT (
+    COUNT(
+        CASE
+            WHEN orders > 1 THEN 1
+            ELSE NULL END
+    )::numeric / COUNT(user_id)) * 100
+FROM user_orders;
+
+Answer:
+```
+79.84%
+```
+
+### What are good indicators of a user who will likely purchase again? What about indicators of users who are likely NOT to purchase again? If you had more data, what features would you want to look into to answer this question?
+
+Users who keep coming back, haave many sessions are more likely to convert better than those with fewer sessions.  Belonging to a particular cohort (age, address, time of order) can also influence whether a user is more likely to convert or not.  Another important factor is whether promos encourage or discourage purchasing.
+
+It would be helpful to see more marketing data aboput the users, say numebr of emails they have received, whether they clicked on promos/emails, why they ended up on the website in the first place, etc.
+
+### Explain the marts models you added. Why did you organize the models in the way you did?
+
+**core**
+* dim_users.sql: Combines users and addresses for more complete user information
+* dim_products.sql: Combines products and line items for a fuller view
+* fact_orders.sql: Combines orders and line items
+
+I feel like the latter two could be combined into one but not sure
+
+**marketing**
+* fact_user_orders.sql: orders and users in one space
+
+**product**
+* fact_page_views.sql: shows all events on the website and the affected users
+
 ## Answers for W1 questions
 
 ### How many users do we have?

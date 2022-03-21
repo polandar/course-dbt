@@ -1,0 +1,10 @@
+version: 2
+
+models:
+  - name: fact_page_views
+    description: event and user information
+    columns:
+      - name: event_id
+        tests:
+          - not_null
+          - unique
