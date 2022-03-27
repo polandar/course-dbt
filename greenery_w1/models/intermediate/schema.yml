@@ -8,3 +8,4 @@ models:
         tests:
           - not_null
           - unique
+  - name: int_event_products

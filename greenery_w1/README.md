@@ -1,3 +1,34 @@
+## Answers for W3 questions
+
+### What is our overall conversion rate?
+
+```
+
+  SELECT
+  ROUND(
+    CAST(
+      COUNT(
+        DISTINCT CASE WHEN checkout_events > 0 THEN session_id END
+      ) AS NUMERIC
+    )/
+    CAST(
+      COUNT(
+        DISTINCT session_id
+      ) AS NUMERIC
+    ) * 100, 2
+  ) AS overall_conversion_rate_pct
+
+  FROM dbt_rolandas_g.fact_sessions
+```
+
+Answer:
+```
+62.46%
+```
+
+### What is our conversion rate by product?
+
+
 ## Answers for W2 questions
 
 ### What is our user repeat rate?
