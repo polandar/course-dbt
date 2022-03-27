@@ -17,10 +17,11 @@ with fact_orders as (
         orders.promo_status,
         orders.is_late_order,
         order_items.product_id,
-        order_items.quantity
+        SUM(order_items.quantity) as items_quantity
     from {{ ref('int_orders') }} orders
     left join {{ ref('stg_order_items') }} order_items 
     on orders.order_id = order_items.order_id
+    group by 1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17
 )
 
 select * from fact_orders
