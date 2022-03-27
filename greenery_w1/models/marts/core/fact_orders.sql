@@ -13,9 +13,12 @@ with fact_orders as (
         orders.estimated_delivery_at_utc,
         orders.delivered_at_utc,
         orders.order_status,
+        orders.discount_percentage,
+        orders.promo_status,
+        orders.is_late_order,
         order_items.product_id,
         order_items.quantity
-    from {{ ref('stg_orders') }} orders
+    from {{ ref('int_orders') }} orders
     left join {{ ref('stg_order_items') }} order_items 
     on orders.order_id = order_items.order_id
 )

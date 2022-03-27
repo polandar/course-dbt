@@ -1,0 +1,10 @@
+version: 2
+
+models:
+  - name: int_orders
+    description: intermediate orders model including promos
+    columns:
+      - name: order_id
+        tests:
+          - not_null
+          - unique
