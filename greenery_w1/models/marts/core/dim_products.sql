@@ -1,5 +1,3 @@
-{{ config(materialized='table') }}
-
 with dim_products as (
     select
         products.product_id,

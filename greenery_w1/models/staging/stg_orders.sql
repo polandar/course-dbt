@@ -1,5 +1,3 @@
-{{ config(materialized='table') }}
-
 with orders_source as (
     select * from {{ source('staging', 'orders') }}
 ),

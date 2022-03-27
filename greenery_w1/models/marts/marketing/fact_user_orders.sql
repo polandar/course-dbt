@@ -1,5 +1,3 @@
-{{ config(materialized='table') }}
-
 with fact_user_orders as (
     select
         users.user_id,

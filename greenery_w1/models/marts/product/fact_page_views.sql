@@ -1,5 +1,3 @@
-{{ config(materialized='table') }}
-
 with fact_page_views as (
     select
         events.event_id,

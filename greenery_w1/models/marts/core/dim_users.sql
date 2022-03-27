@@ -1,5 +1,3 @@
-{{ config(materialized='table') }}
-
 with dim_users as (
     select
         users.user_id,
