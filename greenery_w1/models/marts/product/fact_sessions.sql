@@ -2,7 +2,7 @@
 {% set event_types = event_types() %}
 -- {% set event_types = dbt_utils.get_column_values(table=ref('stg_events'), column='event_type') %}
 with events AS (
-    SELECT * FROM {{ ref('int_event_products') }}
+    SELECT * FROM {{ ref('stg_events') }}
 ),
 sessions AS (
   SELECT
@@ -14,6 +14,7 @@ sessions AS (
     {% endfor %}
     COUNT(*) as total_events
   FROM events
+  WHERE product_id is not NULL
   GROUP BY 1,2
 )
 

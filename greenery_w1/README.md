@@ -2,6 +2,7 @@
 
 ### What is our overall conversion rate?
 
+Query:
 ```
 
   SELECT
@@ -27,6 +28,48 @@ Answer:
 ```
 
 ### What is our conversion rate by product?
+
+Query:
+```
+SELECT
+    product_name,
+    product_conversion_rate as product_conversion_pct
+FROM dbt_rolandas_g.fact_product_sessions
+```
+
+Answer:
+| product_name | conversion_rate_pct |
+|--|--|
+|Bird of Paradise|55.00|
+|Devil's Ivy|53.33|
+|Dragon Tree|54.84|
+|Pothos|39.34|
+|Philodendron|51.61|
+|Rubber Plant|59.26|
+|Angel Wings Begonia|52.46|
+|Pilea Peperomioides|52.54|
+|Majesty Palm|56.72|
+|Aloe Vera|55.38|
+|Spider Plant|50.85|
+|Bamboo|62.69|
+|Alocasia Polly|52.94|
+|Arrow Head|61.90|
+|Pink Anthurium|50.00|
+|Ficus|51.47|
+|Jade Plant|52.17|
+|ZZ Plant|55.56|
+|Calathea Makoyana|60.38|
+|Birds Nest Fern|51.28|
+|Monstera|53.06|
+|Cactus|58.18|
+|Orchid|49.33|
+|Money Tree|46.43|
+|Ponytail Palm|42.86|
+|Boston Fern|53.97|
+|Peace Lily|53.03|
+|Fiddle Leaf Fig|53.57|
+|Snake Plant|46.58|
+|String of pearls|68.75|
 
 
 ## Answers for W2 questions
