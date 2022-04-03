@@ -1,11 +1,11 @@
 WITH sessions AS (
-    SELECT * FROM {{ ref('fact_sessions') }}
+    SELECT * FROM {{ ref('int_sessions') }}
 ),
 products AS (
     SELECT 
     DISTINCT product_id,
     product_name
-    FROM {{ ref('dim_products') }}
+    FROM {{ ref('int_products') }}
 ),
 product_sessions AS (
     SELECT 

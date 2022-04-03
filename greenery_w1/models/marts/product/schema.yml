@@ -8,5 +8,4 @@ models:
         tests:
           - not_null
           - unique
-  - name: fact_sessions
   - name: fact_product_sessions
