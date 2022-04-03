@@ -1,0 +1,5 @@
+version: 2
+
+models:
+  - name: orders_snapshot
+    description:  Contains order details

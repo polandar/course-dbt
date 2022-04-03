@@ -1,0 +1,13 @@
+version: 2
+
+exposures:
+  - name: Session Funnel Dashboard
+    type: dashboard
+    description: Models that are critical to our session funnel dashboard
+    
+    depends_on:
+      - ref('fact_session_funnel')
+
+    owner:
+      name: Rolandas
+      email: rola@nd.as 
